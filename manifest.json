@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Universal Focus",
+  "version": "1.0.0",
+  "description": "Focus the most relevant search box or writing/chat editor on the current page.",
+  "permissions": ["activeTab", "storage"],
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "focus-best-field": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Space"
+      },
+      "description": "Focus the most relevant field on the current page"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scorer.js", "content/detector.js", "content/content.js"],
+      "css": ["content/indicator.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Universal Focus"
+  }
+}

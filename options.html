@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Universal Focus settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>Universal Focus settings</h1>
+    <p class="muted">All settings stay locally in Chrome. Webpage text and typed content are never stored.</p>
+
+    <section>
+      <h2>Focus indicator</h2>
+      <label>Outline color <input id="indicatorColor" type="color"></label>
+      <label>Duration (milliseconds) <input id="indicatorDuration" type="number" min="100" max="5000" step="100"></label>
+    </section>
+
+    <section>
+      <h2>Field filtering</h2>
+      <label><input id="ignoreTiny" type="checkbox"> Ignore tiny fields</label>
+      <label><input id="skipPasswords" type="checkbox"> Always ignore password fields</label>
+    </section>
+
+    <section>
+      <h2>Site preference</h2>
+      <p class="muted">Use <code>auto</code>, <code>search</code>, or <code>chat</code> for a domain.</p>
+      <label>Domain <input id="siteDomain" placeholder="example.com"></label>
+      <label>Preferred field
+        <select id="sitePreference">
+          <option value="auto">Automatic</option>
+          <option value="search">Search field</option>
+          <option value="chat">Chat/writing field</option>
+        </select>
+      </label>
+      <button id="saveSite">Save site preference</button>
+      <ul id="siteList"></ul>
+    </section>
+
+    <p id="status" role="status"></p>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

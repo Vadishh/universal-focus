@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+*.zip
+*.crx
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
