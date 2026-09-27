@@ -1,105 +1,76 @@
 # Universal Focus
 
-Universal Focus is a free, local-only Chrome extension that uses a keyboard shortcut to focus the most relevant search box or writing/chat editor on the current webpage.
+Universal Focus is a free, fast, local-only Chrome extension that uses intuitive keyboard shortcuts to focus the most relevant search box or writing/chat editor on any webpage.
 
-It is designed for modern web apps—not just traditional search bars—including ChatGPT-style contenteditable composers.
+Built for modern web applications—not just traditional query inputs—it natively understands contenteditable composers (ChatGPT, Claude, Notion), rich text areas, and dynamic single-page app (SPA) inputs.
+
+---
 
 ## Features
 
-- Manifest V3 Chrome extension
-- Default shortcut: `Ctrl+Shift+Space`
-- Focuses search inputs, textareas, contenteditable editors, and ARIA textboxes
-- Transparent heuristic ranking based on labels, placeholders, names, context, dimensions, and position
-- Chat and writing fields are supported as first-class candidates
-- Repeated shortcut presses cycle through ranked fields
-- Existing search text is selected automatically for quick replacement
-- Open Shadow DOM traversal
-- Google-specific fallback for `[name="q"]` search fields
-- Optional focus indicator
-- Options page for indicator, filtering, and per-site preferences
-- Popup controls for best field, search, chat, settings, and enable/disable
-- Custom Universal Focus logo and polished popup/options UI
-- Dark rose theme with animated rounded focus glow
-- Optional debug panel showing detected fields, scores, eligibility, and selection
-- No backend, analytics, external API, or AI dependency
+- **Manifest V3** Chrome extension with strict local-only execution (zero tracking, zero analytics, zero external API calls).
+- **Core Keyboard Shortcuts:**
+  - `Ctrl+Shift+Space` (or `Cmd+Shift+Space` on macOS): Focus the smartest field on the page. Pressing repeatedly cycles through ranked candidates.
+  - `/` (Slash): Instantly jump to the primary search input on any page (with smart detection so typing inside fields remains undisturbed).
+  - `Esc` (Escape): Cleanly unfocus any input and return keyboard control to the page for scrolling and site navigation.
+- **Auto-Focus on Page Load:** Automatically target and focus your desired field on specified domains (e.g. `chatgpt.com`, `youtube.com`, `google.com`) as soon as you arrive.
+- **Custom CSS Selectors:** Specify exact CSS selectors per site (e.g. `notion.so` → `#search-input`) to override heuristic ranking on bespoke web apps.
+- **Daily Focus Stats Badge:** Visual counter directly on the extension icon badge showing how many times you've used Universal Focus today, resetting automatically at midnight.
+- **Synthesized Audio Feedback:** Multi-layered, punchy chime (lead triangle chime, octave shimmer, and mechanical click transient) routed through a Web Audio Dynamics Compressor. Driven by a dedicated Manifest V3 offscreen audio engine (`offscreen.html`) so sound is 100% reliable across all tabs without being blocked by Chrome's autoplay policies.
+- **Interactive Onboarding Experience:** Interactive welcome page on install (`onboarding.html`) with an interactive keycap sandbox to test shortcuts live, sound previews, and platform auto-detection.
+- **Heuristic Intelligence Engine:**
+  - Evaluates inputs by semantic type, placeholder, ARIA labels, visibility, element dimensions, viewport position, and context.
+  - Penalizes password inputs, hidden fields, promo boxes, and login credentials by default.
+  - Automatically highlights existing search text for instant replacement.
+  - Traverses open Shadow DOM boundaries and handles Google-specific fallback selectors.
+- **Aesthetic & Control Center:**
+  - Signature electric lime (`#b7ff3c`) on deep obsidian (`#050706`) reticle aesthetic.
+  - Live interactive settings page with Aurora Borealis wave background, magnetic dot grid, cursor spotlight, lagged cursor ring, and 3D card tilt on hover.
+  - Visual glow ring with customizable color and duration.
+  - Quick popup controls to target **Best Field**, **Search**, or **Chat** directly.
+
+---
 
 ## Install from GitHub
 
 GitHub distribution is free and does not require Chrome Web Store publishing.
 
-1. Download or clone this repository.
-2. Open `chrome://extensions`.
-3. Enable **Developer mode**.
+1. Clone or download this repository.
+2. Open Chrome or Brave and navigate to `chrome://extensions`.
+3. Enable **Developer mode** (toggle in the top-right corner).
 4. Click **Load unpacked**.
-5. Select the repository folder containing `manifest.json`.
-6. Open `chrome://extensions/shortcuts` and assign the shortcut.
+5. Select the folder containing `manifest.json`.
+6. *(Optional)* Visit `chrome://extensions/shortcuts` to customize your keyboard shortcut.
 
-After source changes, click **Reload** on the extension card and reload the webpage being tested.
+After making local source code changes, click the **↻ reload** icon on the extension card in `chrome://extensions`.
 
-## Configure it
+---
 
-Open the extension's **Details** page and choose **Extension options**.
+## Configuration & Settings
 
-Available settings:
+Right-click the extension icon and select **Options** (or click **Settings** from the popup) to open the control center:
 
-- Focus indicator color and duration
-- Ignore tiny fields
-- Always ignore password fields
-- Per-domain preference: `auto`, `search`, or `chat`
+### 1. Appearance (`01 / Appearance`)
+- **Glow color:** Live color picker that syncs with all extension indicators.
+- **Signal duration:** Slider from 100 ms to 5000 ms controlling how long the visual glow lingers.
+- **Focus sound:** Enable/disable audio feedback, adjust volume (5% – 100%), and audition the sound with the **"▶ Test sound"** button.
+
+### 2. Behavior (`02 / Behavior`)
+- **Ignore tiny fields:** Skips compact inputs like coupon codes and ZIP inputs.
+- **Protect password fields:** Never targets password inputs by default.
+- **Slash to focus (`/`):** Toggle the quick search jump shortcut.
+- **Escape to blur (`Esc`):** Toggle the quick unfocus shortcut.
+- **Debug intelligence:** Displays an in-page floating inspector detailing detected fields and their raw heuristic scores.
+
+### 3. Personalization (`03 / Personalization`)
+Assign per-domain target preferences:
+- `auto`: Balanced heuristic scoring.
+- `search`: Prioritize search bars and query inputs.
+- `chat`: Prioritize chat composers and rich text editors.
 
 Examples:
-
 ```text
 google.com          → search
 youtube.com         → search
 chatgpt.com         → chat
-gemini.google.com   → chat
-```
-
-## Test it
-
-If Node.js is installed:
-
-```bash
-npm test
-```
-
-The tests cover search scoring, chat textareas, contenteditable editors, hidden and disabled fields, login/unrelated inputs, and competing candidates.
-
-For manual testing, open [tests/manual-test.html](tests/manual-test.html) in Chrome. It includes search, chat, contenteditable, hidden, disabled, readonly, password, tiny, login-like, and dynamically inserted fields.
-
-## Project structure
-
-```text
-├── manifest.json          # Manifest V3 configuration
-├── background.js          # Keyboard command service worker
-├── content/
-│   ├── content.js         # Focus and cycling behavior
-│   ├── detector.js        # DOM discovery and filtering
-│   ├── scorer.js          # Transparent candidate scoring
-│   └── indicator.css      # Focus outline
-├── options.html/js/css    # Local settings page
-├── tests/                 # Automated and manual tests
-├── PRIVACY.md             # Data handling statement
-└── README.md              # Installation and development guide
-```
-
-## Permissions
-
-- `activeTab`: lets the shortcut target the currently active webpage.
-- `storage`: saves only local extension settings and site preferences.
-
-The extension does not store or transmit webpage text, typed messages, search queries, browsing history, passwords, or form data.
-
-## Limitations
-
-- Chrome-restricted pages such as `chrome://newtab/`, `chrome://extensions/`, and the Chrome Web Store cannot be inspected by normal content scripts.
-- The native Chrome/Brave address bar cannot be focused or controlled programmatically by an extension. Use the browser's built-in `Ctrl+L` shortcut to focus it.
-- Cross-origin iframe fields are not inspected from the top page.
-- Closed Shadow DOM cannot be traversed.
-- Websites can intercept focus or replace their editor after focus.
-- Exact site layouts can change; report failures with the issue template.
-
-## License
-
-MIT. See [LICENSE](LICENSE).
+claude.ai           → chat
