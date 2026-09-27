@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Universal Focus</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <header>
+      <img class="logo" src="assets/universal-focus.svg" alt="">
+      <div class="header-text">
+        <h1>Universal Focus</h1>
+        <p id="pageName">Loading…</p>
+      </div>
+    </header>
+
+    <div class="divider"></div>
+
+    <button class="action-primary" data-action="FOCUS_BEST_FIELD">
+      <span class="btn-icon">✦</span>
+      <span class="btn-label">
+        <strong>Focus best field</strong>
+        <small>Smart target on this page</small>
+      </span>
+      <span class="chevron">›</span>
+    </button>
+
+    <div class="action-row">
+      <button class="action-secondary" data-action="FOCUS_SEARCH_FIELD">
+        <span class="btn-icon">⌕</span>
+        <span class="btn-label">
+          <strong>Search</strong>
+          <small>Find a search box</small>
+        </span>
+      </button>
+      <button class="action-secondary" data-action="FOCUS_CHAT_FIELD">
+        <span class="btn-icon">✎</span>
+        <span class="btn-label">
+          <strong>Chat</strong>
+          <small>Find an editor</small>
+        </span>
+      </button>
+    </div>
+
+    <p id="status" role="status"></p>
+
+    <div class="popup-footer">
+      <button id="toggleEnabled" class="text-btn is-enabled">
+        <span class="dot">●</span> Enabled
+      </button>
+      <button id="openSettings" class="text-btn">⚙ Settings</button>
+    </div>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

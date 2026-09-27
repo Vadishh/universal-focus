@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Universal Focus — Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+
+  <!-- Ambient background layer -->
+  <div class="ambient" aria-hidden="true">
+    <canvas id="ambientCanvas"></canvas>
+    <div class="ambient-overlay"></div>
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+    <div class="grain"></div>
+    <div class="cursor-spotlight" id="cursorSpotlight"></div>
+  </div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <main class="shell">
+
+    <!-- Top bar -->
+    <nav class="topbar">
+      <a class="brand" href="#top" aria-label="Universal Focus home">
+        <img src="assets/universal-focus.svg" alt="">
+        <span>Universal Focus</span>
+      </a>
+      <div class="topbar-right">
+        <span class="status-dot"></span>
+        <span>Local &amp; private</span>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Control Center</p>
+        <h1>Make every page<br><em>feel effortless.</em></h1>
+        <p class="hero-subtitle">Tune how Universal Focus finds your next place to type.</p>
+      </div>
+      <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+        <div class="orbit-core">✦</div>
+      </div>
+    </section>
+
+    <!-- Privacy note -->
+    <div class="privacy-note">
+      <span class="note-icon">⌁</span>
+      <span>
+        <strong>Your data stays yours.</strong><br>
+        All settings are stored locally. Webpage content never leaves Chrome.
+      </span>
+      <span class="note-check" aria-hidden="true">✓</span>
+    </div>
+
+    <!-- Settings grid -->
+    <section class="content-grid">
+
+      <!-- Main column -->
+      <div class="main-column">
+
+        <!-- 01 Appearance -->
+        <section class="setting-card indicator-card" aria-labelledby="card-appearance">
+          <div class="card-heading">
+            <div>
+              <p class="card-kicker">01 / Appearance</p>
+              <h2 id="card-appearance">Focus signal</h2>
+              <p>Shape the moment a field is found.</p>
+            </div>
+            <span class="heading-mark" aria-hidden="true">◌</span>
+          </div>
+
+          <div class="preview-wrap">
+            <div class="preview-field">
+              <span>Selected field</span>
+              <span class="preview-caret"></span>
+            </div>
+            <div class="preview-pulse" aria-hidden="true"></div>
+          </div>
+
+          <div class="control-row">
+            <div>
+              <label for="indicatorColor">Glow color</label>
+              <small>Choose the signal you notice first.</small>
+            </div>
+            <div class="color-swatch-wrap">
+              <input id="indicatorColor" type="color" aria-label="Glow color picker">
+              <div class="color-preview" id="colorPreview"></div>
+            </div>
+          </div>
+
+          <div class="control-row">
+            <div>
+              <label for="indicatorDuration">Signal duration</label>
+              <small>How long the glow lingers.</small>
+            </div>
+            <div class="range-wrap">
+              <span class="range-val"><output id="durationValue">1200</output> ms</span>
+              <input id="indicatorDuration" type="range" min="100" max="5000" step="100"
+                     aria-label="Signal duration in milliseconds">
+            </div>
+          </div>
+
+          <!-- Sound feedback -->
+          <div class="control-row border-top-soft">
+            <div>
+              <label>Focus sound</label>
+              <small>Subtle audio tick when a field is focused.</small>
+            </div>
+          </div>
+
+          <label class="toggle-row">
+            <div class="toggle-text">
+              <strong>Enable sound</strong>
+              <small>Play a soft tone on every focus action.</small>
+            </div>
+            <input id="soundEnabled" type="checkbox">
+            <span class="toggle-pill"></span>
+          </label>
+
+          <div class="control-row sound-volume-row" id="soundVolumeRow">
+            <div>
+              <label for="soundVolume">Volume</label>
+              <small>Adjust the feedback loudness.</small>
+            </div>
+            <div class="range-wrap">
+              <span class="range-val"><output id="volumeValue">30</output>%</span>
+              <input id="soundVolume" type="range" min="5" max="100" step="5"
+                     aria-label="Sound volume">
+            </div>
+          </div>
+
+          <button class="btn-test-sound" id="testSound" type="button">▶ Test sound</button>
+        </section>
+
+        <!-- 02 Behavior -->
+        <section class="setting-card" aria-labelledby="card-behavior">
+          <div class="card-heading">
+            <div>
+              <p class="card-kicker">02 / Behavior</p>
+              <h2 id="card-behavior">Field intelligence</h2>
+              <p>Keep irrelevant fields out of the way.</p>
+            </div>
+            <span class="heading-mark" aria-hidden="true">⌘</span>
+          </div>
+
+          <label class="toggle-row">
+            <div class="toggle-text">
+              <strong>Ignore tiny fields</strong>
+              <small>Skip compact inputs like ZIP and promo-code boxes.</small>
+            </div>
+            <input id="ignoreTiny" type="checkbox">
+            <span class="toggle-pill"></span>
+          </label>
+
+          <label class="toggle-row">
+            <div class="toggle-text">
+              <strong>Protect password fields</strong>
+              <small>Never target password inputs by default.</small>
+            </div>
+            <input id="skipPasswords" type="checkbox">
+            <span class="toggle-pill"></span>
+          </label>
+
+          <label class="toggle-row">
+            <div class="toggle-text">
+              <strong>Slash to focus <kbd>/</kbd></strong>
+              <small>Press <kbd>/</kbd> on any page to jump to the search box instantly.</small>
+            </div>
+            <input id="slashToFocus" type="checkbox">
+            <span class="toggle-pill"></span>
+          </label>
+
+          <label class="toggle-row">
+            <div class="toggle-text">
+              <strong>Escape to blur <kbd>Esc</kbd></strong>
+              <small>Press <kbd>Esc</kbd> to unfocus any field and return keyboard to the page.</small>
+            </div>
+            <input id="escapeToBlur" type="checkbox">
+            <span class="toggle-pill"></span>
+          </label>
+
+          <label class="toggle-row">
+            <div class="toggle-text">
+              <strong>Debug intelligence</strong>
+              <small>Reveal detected fields and their ranking scores.</small>
+            </div>
+            <input id="debugMode" type="checkbox">
+            <span class="toggle-pill"></span>
+          </label>
+        </section>
+
+        <!-- 03 Personalization — site preferences -->
+        <section class="setting-card site-card" aria-labelledby="card-sites">
+          <div class="card-heading">
+            <div>
+              <p class="card-kicker">03 / Personalization</p>
+              <h2 id="card-sites">Site preferences</h2>
+              <p>Give your favorite sites a point of view.</p>
+            </div>
+            <span class="heading-mark" aria-hidden="true">✦</span>
+          </div>
+
+          <div class="site-form">
+            <label>
+              <span>Website</span>
+              <input id="siteDomain" type="text" placeholder="e.g. chatgpt.com" autocomplete="off" spellcheck="false">
+            </label>
+            <label>
+              <span>Preferred target</span>
+              <select id="sitePreference">
+                <option value="auto">Automatic</option>
+                <option value="search">Search field</option>
+                <option value="chat">Chat / writing field</option>
+              </select>
+            </label>
+            <button id="saveSite" class="btn-primary" type="button">
+              Save <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <ul id="siteList" class="site-list"></ul>
+        </section>
+
+        <!-- 04 Automation — auto-focus on page load -->
+        <section class="setting-card" aria-labelledby="card-autofocus">
+          <div class="card-heading">
+            <div>
+              <p class="card-kicker">04 / Automation</p>
+              <h2 id="card-autofocus">Auto-focus on load</h2>
+              <p>Automatically focus the best field when you open these sites.</p>
+            </div>
+            <span class="heading-mark" aria-hidden="true">⚡</span>
+          </div>
+
+          <div class="site-form site-form-simple">
+            <label>
+              <span>Website</span>
+              <input id="autoFocusDomain" type="text" placeholder="e.g. chatgpt.com" autocomplete="off" spellcheck="false">
+            </label>
+            <button id="addAutoFocus" class="btn-primary" type="button">
+              Add <span aria-hidden="true">+</span>
+            </button>
+          </div>
+
+          <ul id="autoFocusList" class="site-list"></ul>
+        </section>
+
+        <!-- 05 Advanced — custom CSS selectors -->
+        <section class="setting-card" aria-labelledby="card-selectors">
+          <div class="card-heading">
+            <div>
+              <p class="card-kicker">05 / Advanced</p>
+              <h2 id="card-selectors">Custom selectors</h2>
+              <p>Override detection with your own CSS selector for specific sites.</p>
+            </div>
+            <span class="heading-mark" aria-hidden="true">⟐</span>
+          </div>
+
+          <div class="site-form">
+            <label>
+              <span>Website</span>
+              <input id="selectorDomain" type="text" placeholder="e.g. notion.so" autocomplete="off" spellcheck="false">
+            </label>
+            <label>
+              <span>CSS selector</span>
+              <input id="selectorValue" type="text" placeholder="e.g. #search-input" autocomplete="off" spellcheck="false" class="mono-input">
+            </label>
+            <button id="saveSelector" class="btn-primary" type="button">
+              Save <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <ul id="selectorList" class="site-list"></ul>
+        </section>
+
+      </div><!-- /main-column -->
+
+      <!-- Side column -->
+      <aside class="side-column">
+
+        <!-- Shortcut -->
+        <section class="mini-card shortcut-card">
+          <p class="card-kicker">Quick Action</p>
+          <h3>Ready when you are.</h3>
+          <p>Keyboard shortcuts that work on every page.</p>
+          <div class="keycap-row" aria-label="Keyboard shortcut: Ctrl Shift Space">
+            <kbd>Ctrl</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>Space</kbd>
+          </div>
+          <p class="shortcut-desc">Focus the smartest field</p>
+          <div class="keycap-row">
+            <kbd>/</kbd>
+          </div>
+          <p class="shortcut-desc">Jump to search box</p>
+          <div class="keycap-row">
+            <kbd>Esc</kbd>
+          </div>
+          <p class="shortcut-desc">Unfocus and return to page</p>
+          <a href="chrome://extensions/shortcuts" class="text-link">Change shortcut ↗</a>
+        </section>
+
+        <!-- Live preview -->
+        <section class="mini-card preview-card">
+          <p class="card-kicker">Live Preview</p>
+          <h3>See your signal</h3>
+          <div class="live-editor" aria-hidden="true">
+            <span>Ask anything…</span>
+            <span class="live-caret"></span>
+          </div>
+          <p class="preview-caption">Your focus glow updates as you choose a color.</p>
+        </section>
+
+        <!-- Today's stats -->
+        <section class="mini-card stats-card">
+          <p class="card-kicker">Today</p>
+          <div class="stats-number" id="todayCount">0</div>
+          <p>focuses today</p>
+        </section>
+
+        <!-- Tip -->
+        <section class="mini-card tip-card">
+          <span class="tip-icon" aria-hidden="true">✧</span>
+          <h3>Small ritual, big flow.</h3>
+          <p>Press the shortcut again to cycle through the next best field on a busy page.</p>
+        </section>
+
+      </aside>
+
+    </section><!-- /content-grid -->
+
+    <footer>
+      <span>Universal Focus</span>
+      <span>v1.0.0 · Built for calm, keyboard-first work</span>
+    </footer>
+
+    <p id="status" role="status" aria-live="polite"></p>
+
+  </main>
+
+  <script src="options.js"></script>
+</body>
+</html>

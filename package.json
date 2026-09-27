@@ -1,0 +1,9 @@
+{
+  "name": "universal-focus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Universal Focus Chrome extension tests",
+  "scripts": {
+    "test": "node --test tests/scorer.test.js"
+  }
+}

@@ -1,0 +1,268 @@
+/* ============================================================
+   Universal Focus — Popup
+   Single authoritative theme: Deep black + electric lime
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg:           #080a09;
+  --surface:      rgba(14, 19, 14, 0.92);
+  --surface-2:    rgba(22, 30, 20, 0.88);
+  --border:       rgba(183, 255, 60, 0.14);
+  --border-hover: rgba(183, 255, 60, 0.38);
+  --accent:       #b7ff3c;
+  --accent-dim:   rgba(183, 255, 60, 0.12);
+  --accent-glow:  rgba(183, 255, 60, 0.22);
+  --text:         #f0f5ec;
+  --text-muted:   #8a9487;
+  --text-sub:     #5e6860;
+  --danger:       #ff6b6b;
+  --radius-sm:    8px;
+  --radius-md:    14px;
+  --radius-lg:    18px;
+  --ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body {
+  width: 300px;
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font: 13px / 1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ambient backdrop orbs */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(38px);
+}
+body::before {
+  top: -60px; right: -50px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(91,139,27,0.38), transparent 70%);
+  animation: ambientDrift 12s ease-in-out infinite alternate;
+}
+body::after {
+  bottom: -70px; left: -50px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(40,70,18,0.3), transparent 70%);
+  animation: ambientDrift 16s ease-in-out infinite alternate-reverse;
+}
+@keyframes ambientDrift {
+  to { transform: translate(14px, -12px) scale(1.12); }
+}
+
+main {
+  position: relative;
+  isolation: isolate;
+  padding: 16px;
+}
+
+/* ── Header ── */
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px var(--border), 0 4px 16px rgba(183,255,60,0.14);
+}
+
+.header-text h1 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+#pageName {
+  margin: 2px 0 0;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--text-muted);
+  font-size: 10.5px;
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 12px 0;
+}
+
+/* ── Primary action button ── */
+.action-primary {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid rgba(183,255,60,0.28);
+  border-radius: var(--radius-md);
+  color: #0f1a08;
+  background: linear-gradient(135deg, #d4ff68 0%, #b7ff3c 55%, #96d930 100%);
+  box-shadow: 0 4px 18px rgba(183,255,60,0.24), 0 1px 0 rgba(255,255,255,0.1) inset;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: transform 160ms var(--ease-out),
+              box-shadow 160ms var(--ease-out),
+              background 160ms ease;
+}
+.action-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(183,255,60,0.36), 0 1px 0 rgba(255,255,255,0.15) inset;
+  background: linear-gradient(135deg, #deff7a 0%, #c5ff52 55%, #a8e83c 100%);
+}
+.action-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(183,255,60,0.18);
+}
+.action-primary .btn-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.15);
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.action-primary .btn-label strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+.action-primary .btn-label small {
+  display: block;
+  margin-top: 1px;
+  font-size: 10px;
+  opacity: 0.65;
+}
+.action-primary .chevron {
+  margin-left: auto;
+  font-size: 18px;
+  opacity: 0.55;
+}
+
+/* ── Secondary action row ── */
+.action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.action-secondary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  background: var(--surface-2);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  backdrop-filter: blur(12px);
+  transition: transform 160ms var(--ease-out),
+              border-color 160ms ease,
+              box-shadow 160ms ease;
+}
+.action-secondary:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+  box-shadow: 0 6px 20px rgba(183,255,60,0.1);
+}
+.action-secondary:active {
+  transform: translateY(0);
+}
+.action-secondary .btn-icon {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: rgba(183,255,60,0.1);
+  color: var(--accent);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.action-secondary .btn-label strong {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 650;
+}
+.action-secondary .btn-label small {
+  display: block;
+  font-size: 9.5px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* ── Status ── */
+#status {
+  min-height: 16px;
+  margin: 10px 2px 2px;
+  color: var(--text-muted);
+  font-size: 10.5px;
+  text-align: center;
+  transition: color 200ms ease;
+}
+#status.error { color: var(--danger); }
+
+/* ── Footer ── */
+.popup-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.text-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 6px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 10.5px;
+  transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+.text-btn:hover {
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-color: var(--border);
+}
+.text-btn .dot {
+  font-size: 9px;
+  transition: color 140ms ease;
+}
+.text-btn.is-enabled .dot  { color: var(--accent); }
+.text-btn.is-disabled .dot { color: var(--text-sub); }
+.text-btn.is-disabled { color: var(--text-sub); }

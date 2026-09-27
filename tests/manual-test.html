@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Universal Focus manual test page</title>
+  <style>
+    body { font: 16px system-ui, sans-serif; max-width: 760px; margin: 40px auto; }
+    section { padding: 16px; margin: 16px 0; border: 1px solid #ccc; }
+    input, textarea, [contenteditable] { display: block; width: 100%; box-sizing: border-box; margin: 8px 0; padding: 10px; }
+    .tiny { width: 80px; height: 16px; padding: 0; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Universal Focus manual test page</h1>
+  <p>Use the extension shortcut and observe which field receives the focus outline.</p>
+
+  <section aria-label="Search area">
+    <h2>Search</h2>
+    <input type="search" placeholder="Search this page">
+  </section>
+
+  <section aria-label="Chat area">
+    <h2>Chat</h2>
+    <textarea placeholder="Message the assistant"></textarea>
+    <div contenteditable="true" role="textbox" aria-label="Write a message">Contenteditable chat editor</div>
+  </section>
+
+  <section aria-label="Unrelated fields">
+    <h2>Fields that should be ignored or penalized</h2>
+    <input type="password" placeholder="Password">
+    <input name="username" placeholder="Username">
+    <input name="newsletter" placeholder="Subscribe to our newsletter">
+    <input class="tiny" placeholder="ZIP">
+    <input disabled placeholder="Disabled">
+    <input readonly value="Readonly">
+    <input class="hidden" placeholder="Hidden">
+  </section>
+
+  <button id="insert">Insert dynamic chat editor</button>
+  <div id="dynamic"></div>
+  <script>
+    document.querySelector('#insert').addEventListener('click', () => {
+      const editor = document.createElement('textarea');
+      editor.placeholder = 'Dynamically inserted prompt';
+      document.querySelector('#dynamic').append(editor);
+    });
+  </script>
+</body>
+</html>

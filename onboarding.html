@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Universal Focus</title>
+  <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+
+  <!-- Ambient backdrop lighting -->
+  <div class="ambient" aria-hidden="true">
+    <div class="ambient-orb orb-top"></div>
+    <div class="ambient-orb orb-bottom"></div>
+    <div class="ambient-grid"></div>
+    <div class="cursor-spotlight" id="cursorSpotlight"></div>
+  </div>
+
+  <div class="shell">
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="hero-badge">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Extension Installed</span>
+      </div>
+
+      <div class="hero-main">
+        <div class="logo-box">
+          <img class="hero-logo" src="assets/universal-focus.svg" alt="Universal Focus icon" width="64" height="64">
+          <div class="logo-glow" aria-hidden="true"></div>
+        </div>
+        <div class="hero-copy">
+          <h1 class="hero-title">Welcome to <span class="accent-text">Universal Focus</span></h1>
+          <p class="hero-subtitle">Instant, distraction-free search and input navigation across the web.</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Three Feature Cards in a Row -->
+    <section class="features" aria-label="Core Keyboard Shortcuts">
+
+      <!-- Card 1: Best Field -->
+      <article class="feature-card" id="cardBestField" data-shortcut="focus-best" tabindex="0">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="card-top">
+          <div class="kbd-cluster" aria-label="Shortcut: Control plus Shift plus Space">
+            <kbd class="key" id="modKey">Ctrl</kbd>
+            <span class="key-sep" aria-hidden="true">+</span>
+            <kbd class="key">Shift</kbd>
+            <span class="key-sep" aria-hidden="true">+</span>
+            <kbd class="key key-wide">Space</kbd>
+          </div>
+          <span class="card-tag">Primary</span>
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">Smart Focus</h2>
+          <p class="card-desc">Focus the smartest field on any page</p>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dot" aria-hidden="true"></span>
+          <span class="meta-label">Intelligent DOM scoring</span>
+        </div>
+      </article>
+
+      <!-- Card 2: Slash to Search -->
+      <article class="feature-card" id="cardSlash" data-shortcut="slash" tabindex="0">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="card-top">
+          <div class="kbd-cluster" aria-label="Shortcut: Slash key">
+            <kbd class="key key-accent key-mono">/</kbd>
+          </div>
+          <span class="card-tag">Quick Search</span>
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">Jump to Search</h2>
+          <p class="card-desc">Press / to instantly jump to search</p>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dot" aria-hidden="true"></span>
+          <span class="meta-label">Find query bars on any site</span>
+        </div>
+      </article>
+
+      <!-- Card 3: Escape to Blur -->
+      <article class="feature-card" id="cardEscape" data-shortcut="escape" tabindex="0">
+        <div class="card-glow" aria-hidden="true"></div>
+        <div class="card-top">
+          <div class="kbd-cluster" aria-label="Shortcut: Escape key">
+            <kbd class="key">Esc</kbd>
+          </div>
+          <span class="card-tag">Unfocus</span>
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">Return to Page</h2>
+          <p class="card-desc">Press Esc to unfocus and return to the page</p>
+        </div>
+        <div class="card-meta">
+          <span class="meta-dot" aria-hidden="true"></span>
+          <span class="meta-label">Seamless keyboard release</span>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section" aria-label="Power Features">
+      <div class="tips-header">
+        <span class="tips-kicker">✦ Included Capabilities</span>
+        <span class="tips-subline">Configurable anytime in your settings dashboard</span>
+      </div>
+
+      <div class="tips-grid">
+        <!-- Tip 1: Auto-Focus on Page Load -->
+        <div class="tip-item">
+          <div class="tip-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div class="tip-body">
+            <h3>Auto-focus on page load</h3>
+            <p>Automatically focus the primary search or input field as soon as trusted pages load.</p>
+          </div>
+        </div>
+
+        <!-- Tip 2: Per-Site Preferences -->
+        <div class="tip-item">
+          <div class="tip-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <div class="tip-body">
+            <h3>Per-site preferences</h3>
+            <p>Customize behavior per domain — prioritize search bars, AI chat inputs, or auto detection.</p>
+          </div>
+        </div>
+
+        <!-- Tip 3: Custom Selectors -->
+        <div class="tip-item">
+          <div class="tip-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="22" y1="12" x2="18" y2="12"></line>
+              <line x1="6" y1="12" x2="2" y2="12"></line>
+              <line x1="12" y1="6" x2="12" y2="2"></line>
+              <line x1="12" y1="22" x2="12" y2="18"></line>
+            </svg>
+          </div>
+          <div class="tip-body">
+            <h3>Custom selectors</h3>
+            <p>Pinpoint custom inputs on bespoke single-page applications with surgical CSS rules.</p>
+          </div>
+        </div>
+
+        <!-- Tip 4: Sound Feedback -->
+        <div class="tip-item">
+          <div class="tip-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          </div>
+          <div class="tip-body">
+            <h3>Sound feedback</h3>
+            <p>Optional synthesized audio tick confirms focused inputs without visual distraction.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Actions Section -->
+    <div class="actions">
+      <div class="btn-group">
+        <button class="btn btn-primary" id="btnGetStarted" type="button">
+          <span class="btn-label">Get Started</span>
+          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <button class="btn btn-secondary" id="btnOpenSettings" type="button">
+          <svg class="btn-gear" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span class="btn-label">Open Settings</span>
+        </button>
+      </div>
+
+      <div class="interactive-pill" id="interactivePill" aria-live="polite">
+        <span class="pill-dot" aria-hidden="true"></span>
+        <span class="pill-text" id="interactiveText">Try pressing <kbd class="key-inline">/</kbd> or <kbd class="key-inline">Esc</kbd> to test shortcuts</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p class="footer-text">Universal Focus · v1.0.0 · Your data stays local</p>
+    </footer>
+
+  </div>
+
+  <script src="onboarding.js"></script>
+</body>
+</html>

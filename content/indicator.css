@@ -1,0 +1,18 @@
+.universal-focus-target {
+  --focus-color: var(--universal-focus-color, #b7ff3c);
+  position: relative;
+  z-index: 2147483646;
+  border-radius: 12px !important;
+  outline: 2px solid var(--focus-color) !important;
+  outline-offset: 4px !important;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--focus-color) 18%, transparent),
+    0 0 24px color-mix(in srgb, var(--focus-color) 58%, transparent) !important;
+  animation: universal-focus-pulse 1.2s cubic-bezier(.2,.75,.25,1) 1;
+  transition: outline-color 160ms ease, box-shadow 160ms ease;
+}
+
+@keyframes universal-focus-pulse {
+  0% { outline-offset: 1px; box-shadow: 0 0 0 0 color-mix(in srgb, var(--focus-color) 0%, transparent); }
+  45% { outline-offset: 7px; box-shadow: 0 0 0 7px color-mix(in srgb, var(--focus-color) 22%, transparent), 0 0 30px color-mix(in srgb, var(--focus-color) 70%, transparent); }
+  100% { outline-offset: 4px; box-shadow: 0 0 0 5px color-mix(in srgb, var(--focus-color) 18%, transparent), 0 0 24px color-mix(in srgb, var(--focus-color) 58%, transparent); }
+}
